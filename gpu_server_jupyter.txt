@@ -1,0 +1,49 @@
+#### COMANDI UTILI ###
+
+Controllare le GPU disponibili:
+Check the available GPUs (works in @gpu.eees.dei.unibo.it) 
+    nvidia-smi
+Controllare le porte disponibili:
+Check the available ports (works in the local devide)
+    netstat -aon
+
+Trovare la porta per vnc (solo accedendo dal compute):
+Find the port for vnc (only by accessing from the compute) - This I never got to use
+    ./start_vnc.sh
+###############################################################################
+
+##### Tutorial per effettuare il Tunnel #####
+
+### 1st Terminal ###
+
+Accesso al GPU server:
+    ssh -X  amoallemi@gpu.eees.dei.unibo.it
+Password: Am!R7293
+
+Openning of Jupyter notebook on server:
+    jupyter-notebook --no-browser --ip=127.0.0.1 --port=<numero_port_remoto>
+
+    (working example of jupyter):
+        jupyter-notebook --no-browser --ip=127.0.0.1 --port=8888
+
+
+
+
+
+### 2nd Terminal ###
+
+Access server from your local device:
+    ssh -NfL <port_locale>:127.0.0.1:<numero_port_remoto>   <username>@gpu.eees.dei.unibo.it
+    
+    (working example):
+        ssh -NfL 8888:127.0.0.1:8888   gsintoni@gpu.eees.dei.unibo.it
+
+
+Dopo aver inserito nuovamente la stessa password, aprire un browser e digitare:
+    127.0.0.1:<port_locale> 
+    
+    (esempio funzionante):
+        127.0.0.1:8888
+
+Inserire la password di Jupyter Notebook impostata sul server:
+    181293
